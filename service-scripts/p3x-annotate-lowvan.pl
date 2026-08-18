@@ -82,8 +82,8 @@ $params = ["get_transcript_edited_features.pl"];
 push(@$params,
      "--cov", $opt->transcript_cov,
      "--id", $opt->transcript_id,
-     "--gaps", $opt->transcript_id,
-     "--e_val", $opt->transcript_id,
+     "--gaps", $opt->transcript_gaps,
+     "--e_val", $opt->transcript_e_val,
      "--lower_pid", $opt->transcript_lower_pid,
      "--lower_pcov", $opt->transcript_lower_pcov,
      "--threads", $opt->parallel);
@@ -107,8 +107,6 @@ push(@stage_params, $params);
 #
 # And construct pipeline.
 # 
-
-my @pipeline;
 
 my @pipeline = intersperse("|", $opt->prefix, @stage_params);
 print "Running: " .  Dumper(@pipeline);
@@ -139,12 +137,12 @@ sub intersperse {
     my $cur = shift @list;
     push(@out, $cur);
     (my $prog = $cur->[0]) =~ s/\.pl$//;
-    push(@out, "2>", "$prefix.stderr.$prog");
+    push(@out, "2>", "$prefix.$prog.stderr");
     
     for my $item (@list) {
 	push(@out, $sep, $item);
 	(my $prog = $item->[0]) =~ s/\.pl$//;
-	push(@out, "2>", "$prefix.stderr.$prog");
+	push(@out, "2>", "$prefix.$prog.stderr");
     }
     return @out;
 }

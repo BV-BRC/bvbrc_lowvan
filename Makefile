@@ -37,7 +37,7 @@ TPAGE_ARGS = --define kb_top=$(TARGET) --define kb_runtime=$(DEPLOY_RUNTIME) --d
 	--define kb_starman_workers=$(STARMAN_WORKERS) \
 	--define kb_starman_max_requests=$(STARMAN_MAX_REQUESTS)
 
-SOURCE_REPO = https://github.com/olsonanl/jdavis_lowvan
+SOURCE_REPO = https://github.com/CEPI-dxkb/Viral_Annotation
 #SOURCE_VERSION = v1.0.0
 #SOURCE_REPO = https://github.com/jimdavis1/Viral_Annotation
 REPO_DIR = Viral_Annotation
